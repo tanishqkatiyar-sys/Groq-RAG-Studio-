@@ -127,14 +127,14 @@ EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
 
 ## 📸 Screenshots
 
-> *Add screenshots here after running the app:*
->
-> - `docs/hero.png` — Main chat interface
-> - `docs/sidebar-knowledge.png` — PDF upload & management
-> - `docs/sidebar-tuning.png` — Retrieval parameters
-> - `docs/citations.png` — Expandable source citations
+### Knowledge
+![Knowledge](screenshots\Screenshot 2026-11-17 131135.png)
 
----
+### Tuning
+![Tuning](screenshots\Screenshot 2026-11-17 131210.png)
+
+### System
+![System](screenshots\Screenshot 2026-11-17 131244.png)
 
 ## 🛠️ Development
 
