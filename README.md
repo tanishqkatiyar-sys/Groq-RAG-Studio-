@@ -1,20 +1,27 @@
 # Groq RAG Studio ⚡
 
-> **Ultra-fast document intelligence powered by Groq LPU, ChromaDB, and LangChain.**  
-> Upload PDFs, ask questions, get cited answers in milliseconds.
+<p align="center">
+  <strong>Ultra-fast document intelligence powered by Groq LPU, ChromaDB, and LangChain.</strong>
+  <br>
+  Upload PDFs, ask questions, and get cited answers in milliseconds.
+  <br><br>
+  <a href="https://2pakglvn7v3qjr4zl8jfh4.streamlit.app/">
+    🚀 <strong>Live Demo</strong>
+  </a>
+</p>
 
 ---
 
 ## 🎯 Overview
 
-**Groq RAG Studio** is a production-ready Retrieval-Augmented Generation (RAG) application built with Streamlit. It transforms your PDF documents into a searchable knowledge base and answers questions with **page-level source citations** — all running on Groq's lightning-fast LPU inference.
+**Groq RAG Studio** is a production-ready Retrieval-Augmented Generation (RAG) application built with Streamlit. It transforms your PDF documents into a searchable knowledge base and answers questions with **page-level source citations** — all running on Groq's fast LPU inference.
 
 | Feature | Implementation |
 |---------|----------------|
 | **LLM Inference** | Groq (Llama 3.1, Mixtral, Gemma 2) |
 | **Vector Store** | ChromaDB (persistent, local) |
 | **Embeddings** | `sentence-transformers/all-MiniLM-L6-v2` (local, CPU) |
-| **PDF Extraction** | PyMuPDF (fitz) — 50–100× faster than PyPDF |
+| **PDF Extraction** | PyMuPDF (fitz) |
 | **Chunking** | RecursiveCharacterTextSplitter (1000/200) |
 | **Retrieval** | MMR (Maximal Marginal Relevance) with diversity control |
 | **UI** | Streamlit with glassmorphic Obsidian theme |
@@ -25,39 +32,87 @@
 
 | Capability | Description |
 |------------|-------------|
-| 📄 **Multi-PDF Knowledge Base** | Drag & drop multiple PDFs, auto-deduplicated by content hash |
-| ⚡ **Sub-second Retrieval** | Groq LPU + ChromaDB = answers in ~200ms |
-| 📑 **Cited Answers** | Every response shows exact source passages with page numbers |
+| 📄 **Multi-PDF Knowledge Base** | Upload multiple PDFs, automatically deduplicated by content hash |
+| ⚡ **Fast Retrieval** | Groq LPU + ChromaDB for fast document question answering |
+| 📑 **Cited Answers** | Responses include source passages and page numbers |
 | 🎭 **6 Personalities** | Teacher, Developer, Mentor, Researcher, Interviewer, General Assistant |
 | 🔍 **MMR Retrieval Tuning** | Adjust `k`, `fetch_k`, and diversity (`λ`) in the sidebar |
-| 🗑️ **Full Document Management** | Delete individual PDFs or wipe the entire knowledge base |
-| 💬 **Session Persistence** | Chat history survives reruns; export-ready |
+| 🗑️ **Document Management** | Delete individual PDFs or clear the knowledge base |
+| 💬 **Session Persistence** | Chat history survives Streamlit reruns |
+
+---
+
+## 🚀 Live Demo
+
+Try the deployed application:
+
+**[🌐 Open Groq RAG Studio](https://2pakglvn7v3qjr4zl8jfh4.streamlit.app/)**
+
+---
+
+## 📸 Screenshots
+
+### Knowledge Base
+![Knowledge](screenshots/Screenshot%202026-11-17%20131135.png)
+
+### Retrieval Tuning
+![Tuning](screenshots/Screenshot%202026-11-17%20131210.png)
+
+### System Information
+![System](screenshots/Screenshot%202026-11-17%20131244.png)
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Streamlit
+- **LLM Provider:** Groq
+- **LLM Framework:** LangChain
+- **Vector Database:** ChromaDB
+- **Embedding Model:** Sentence Transformers
+- **PDF Processing:** PyMuPDF
+- **Language:** Python
 
 ---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Python 3.10+
 - [Groq API Key](https://console.groq.com/keys) (free tier available)
 
 ### Installation
 
 ```bash
-# 1. Clone & enter
+# 1. Clone the repository
 git clone <your-repo-url>
+
+# 2. Enter the project directory
 cd Groq-RAG-Studio
 
-# 2. Create virtual environment
+# 3. Create a virtual environment
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
 
-# 3. Install dependencies
+# 4. Activate the environment
+
+# Windows
+venv\Scripts\activate
+
+# macOS / Linux
+source venv/bin/activate
+
+# 5. Install dependencies
 pip install -r requirements.txt
 
-# 4. Configure environment
+# 6. Configure environment variables
 cp .env.example .env
-# Edit .env and add your GROQ_API_KEY
+```
+
+Add your Groq API key to the `.env` file:
+
+```env
+GROQ_API_KEY=your_actual_groq_api_key
 ```
 
 ### Run the App
@@ -66,23 +121,35 @@ cp .env.example .env
 streamlit run app.py
 ```
 
-Open **http://localhost:8501** in your browser.
+Open your browser:
+
+```text
+http://localhost:8501
+```
 
 ---
 
 ## 📁 Project Structure
 
-```
+```text
 Groq-RAG-Studio/
-├── app.py                 # Streamlit UI (theme, chat, sidebar, upload)
-├── main.py                # Core RAG logic (loaders, retrieval, generation)
-├── create_database.py     # (Optional) Bulk PDF ingestion script
-├── document_loaders/      # Custom loader utilities (if any)
-├── vector_store/          # Vector store helpers (if any)
-├── chroma_db/             # Persistent ChromaDB (auto-created, gitignored)
-├── requirements.txt       # Python dependencies
-├── pyproject.toml         # Project metadata
-├── .env.example           # Environment template
+│
+├── app.py                  # Streamlit UI
+├── main.py                 # Core RAG logic
+├── create_database.py      # Optional PDF ingestion script
+│
+├── screenshots/            # Application screenshots
+│   ├── Screenshot 2026-11-17 131135.png
+│   ├── Screenshot 2026-11-17 131210.png
+│   └── Screenshot 2026-11-17 131244.png
+│
+├── document_loaders/       # Custom document loaders
+├── vector_store/           # Vector store utilities
+├── chroma_db/              # Persistent ChromaDB (auto-created)
+│
+├── requirements.txt        # Python dependencies
+├── pyproject.toml           # Project metadata
+├── .env.example             # Environment template
 ├── .gitignore
 └── README.md
 ```
@@ -91,75 +158,76 @@ Groq-RAG-Studio/
 
 ## ⚙️ Configuration
 
-### Environment Variables (`.env`)
+### Environment Variables
 
-```bash
+Create a `.env` file in the project root:
+
+```env
 # Required
-GROQ_API_KEY=gsk_xxxxxxxxxxxxxxxxxxxxxxxx
+GROQ_API_KEY=your_groq_api_key
 
-# Optional (defaults shown)
-GROQ_MODEL=openai/gpt-oss-120b          # Model: llama-3.1-8b-instant, mixtral-8x7b-32768, gemma2-9b-it
+# Optional
+GROQ_MODEL=openai/gpt-oss-120b
 EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
 ```
+
+### Streamlit Cloud Secrets
+
+For deployment on Streamlit Community Cloud:
+
+1. Open your app dashboard.
+2. Navigate to **Settings → Secrets**.
+3. Add:
+
+```toml
+GROQ_API_KEY = "your_actual_groq_api_key"
+```
+
+4. Save and wait for the changes to propagate.
+
+**Security:** Never upload your actual `.env` file or API key to GitHub.
 
 ### Retrieval Parameters (Sidebar → Tuning)
 
 | Parameter | Range | Default | Effect |
 |-----------|-------|---------|--------|
-| **Top-K** | 1–10 | 4 | Final chunks sent to LLM |
+| **Top-K** | 1–10 | 4 | Final chunks sent to the LLM |
 | **Fetch K** | 5–30 | 10 | Initial candidate pool before MMR |
-| **Diversity (λ)** | 0.0–1.0 | 0.5 | 0 = max diversity, 1 = max relevance |
+| **Diversity (λ)** | 0.0–1.0 | 0.5 | 0 = maximum diversity, 1 = maximum relevance |
 
 ---
 
-## 🎨 Personalities
+## 🎨 AI Personalities
 
 | Personality | Best For |
 |-------------|----------|
-| **Teacher** | Step-by-step explanations, learning new topics |
-| **Developer** | Code snippets, debugging, best practices |
-| **Mentor** | Career guidance, structured advice |
-| **Researcher** | Analytical breakdowns, fact vs. uncertainty |
-| **Interviewer** | Interview-style Q&A, technical screening prep |
-| **General Assistant** | Friendly, balanced, everyday help |
+| **Teacher** | Step-by-step explanations and learning new topics |
+| **Developer** | Code snippets, debugging, and best practices |
+| **Mentor** | Career guidance and structured advice |
+| **Researcher** | Analytical breakdowns and fact-based answers |
+| **Interviewer** | Interview-style questions and technical screening |
+| **General Assistant** | Friendly and balanced everyday assistance |
 
 ---
 
-## 📸 Screenshots
+## 🔄 How It Works
 
-### Knowledge
-![Knowledge](screenshots/Screenshot%202026-11-17%20131135.png)
-
-### Tuning
-![Tuning](screenshots/Screenshot%202026-11-17%20131210.png)
-
-### System
-![System](screenshots/Screenshot%202026-11-17%20131244.png)
-
-## 🛠️ Development
-
-### Run Tests (if added)
-```bash
-pytest -v
-```
-
-### Format Code
-```bash
-black app.py main.py
-isort app.py main.py
-```
-
-### Type Check
-```bash
-mypy app.py main.py
-```
+1. **Upload PDF:** Upload one or multiple PDF documents.
+2. **Text Extraction:** PyMuPDF extracts text from the uploaded documents.
+3. **Text Chunking:** LangChain splits extracted text into manageable chunks.
+4. **Embedding Generation:** Sentence Transformers converts chunks into vector embeddings.
+5. **Vector Storage:** ChromaDB stores the embeddings for similarity search.
+6. **Question Retrieval:** MMR retrieves relevant document chunks.
+7. **LLM Generation:** Groq generates an answer using the retrieved context.
+8. **Source Citations:** The application displays relevant source passages and page numbers.
 
 ---
 
 ## 📦 Dependencies
 
-**Core** (`requirements.txt`):
-```
+Core dependencies from `requirements.txt`:
+
+```text
 streamlit>=1.40.0
 groq>=0.11.0
 python-dotenv>=1.0.0
@@ -179,32 +247,49 @@ pypdf>=4.0.0
 
 ## 🔒 Privacy & Security
 
-- **100% Local Embeddings** — Documents never leave your machine for embedding
-- **Groq API Only for Generation** — Only query + retrieved chunks sent to Groq
-- **No Telemetry** — Zero tracking, analytics, or external calls beyond Groq
-- **Content-Hash Deduplication** — Identical PDFs skipped automatically
+- **Local Embeddings:** Document embeddings are generated locally.
+- **Groq API for Generation:** Queries and retrieved context are sent to Groq for answer generation.
+- **No Application Telemetry:** No custom tracking or analytics are included.
+- **Content-Hash Deduplication:** Duplicate PDFs are skipped automatically.
 
 ---
 
 ## 🗺️ Roadmap
 
-- [ ] Hybrid search (BM25 + vector)
+- [ ] Hybrid search (BM25 + vector search)
 - [ ] Multi-collection support (projects/workspaces)
 - [ ] Streaming token-by-token responses
 - [ ] PDF OCR fallback for scanned documents
 - [ ] Export chat as Markdown/PDF
-- [ ] Dockerfile + docker-compose
-- [ ] Unit & integration tests
+- [ ] Dockerfile + Docker Compose
+- [ ] Unit and integration tests
 
 ---
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-thing`)
-3. Commit your changes (`git commit -m 'Add amazing thing'`)
-4. Push to the branch (`git push origin feature/amazing-thing`)
-5. Open a Pull Request
+Contributions are welcome!
+
+1. Fork the repository.
+2. Create a feature branch:
+
+   ```bash
+   git checkout -b feature/amazing-thing
+   ```
+
+3. Commit your changes:
+
+   ```bash
+   git commit -m "Add amazing feature"
+   ```
+
+4. Push to your branch:
+
+   ```bash
+   git push origin feature/amazing-thing
+   ```
+
+5. Open a Pull Request.
 
 ---
 
@@ -216,18 +301,16 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ## 🙏 Acknowledgments
 
-- **Groq** — For the world's fastest LLM inference
-- **LangChain** — For the RAG orchestration framework
-- **ChromaDB** — For the lightweight vector database
-- **Streamlit** — For the delightful Python-to-UI framework
-- **PyMuPDF** — For blazing-fast PDF extraction
+- **[Groq](https://groq.com/)** — Fast LLM inference.
+- **[LangChain](https://www.langchain.com/)** — RAG orchestration framework.
+- **[ChromaDB](https://www.trychroma.com/)** — Vector database.
+- **[Streamlit](https://streamlit.io/)** — Python application framework.
+- **[PyMuPDF](https://pymupdf.readthedocs.io/)** — PDF text extraction.
 
 ---
 
-<div align="center">
-
-**Built with ❤️ for developers who value speed and citations.**
-
-[⭐ Star this repo] • [🐛 Report Bug] • [💡 Request Feature]
-
-</div>
+<p align="center">
+  <strong>Built with ❤️ for developers who value speed and citations.</strong>
+  <br><br>
+  🚀 <a href="https://2pakglvn7v3qjr4zl8jfh4.streamlit.app/">Live Demo</a>
+</p>
