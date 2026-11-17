@@ -128,13 +128,13 @@ EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
 ## 📸 Screenshots
 
 ### Knowledge
-![Knowledge](screenshots\Screenshot 2026-11-17 131135.png)
+![Knowledge](screenshots/Screenshot%202026-11-17%20131135.png)
 
 ### Tuning
-![Tuning](screenshots\Screenshot 2026-11-17 131210.png)
+![Tuning](screenshots/Screenshot%202026-11-17%20131210.png)
 
 ### System
-![System](screenshots\Screenshot 2026-11-17 131244.png)
+![System](screenshots/Screenshot%202026-11-17%20131244.png)
 
 ## 🛠️ Development
 
